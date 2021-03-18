@@ -11,6 +11,8 @@ const gameBoard = (()=>{
         const play = (e) => {
             let index = e.target.dataset.index;
             boards[index] = sign;
+            e.target.classList.add('player-section');
+            ai.setTurn(true);
         }
         const isWinner = false; 
         return {getSign, getTurn, setTurn, play, isWinner};
@@ -19,6 +21,8 @@ const gameBoard = (()=>{
     const computer = () => {
         const sign = "O";
         const getSign = () => sign;
+        const getTurn = () => turn;
+        const setTurn = (newTurn) => turn = newTurn;
         const play = () =>  {
             let emptyBoard = [];
             for(let i = 0; i<boards.length; i++){
@@ -28,9 +32,17 @@ const gameBoard = (()=>{
             }
             let index = emptyBoard[Math.round(Math.random()*(emptyBoard.length-1))];
             boards[index] = sign;
+            Array.from(buttons).forEach(button => {
+                if(button.dataset.index == index){
+                    button.classList.add('computer-section');
+                    button.addEventListener('transitionend', (a)=>{
+                        player.setTurn(true);  
+                    })
+                }
+            });
         }
         const isWinner = false;
-        return {getSign, play, isWinner};
+        return {getSign, getTurn, setTurn, play, isWinner};
     }
 
     const display = (boards) =>{
@@ -108,6 +120,16 @@ const gameBoard = (()=>{
                 return false;
             }
         }
+
+        const isLastRound = () =>{
+            for(let i = 0; i<boards.length; i++){
+                if(boards[i] == undefined){
+                    return false;
+                }
+            }
+            return true;
+        }
+
         const isEnd = () =>{
             if(checkRows() || checkColumns() || checkDiagonal()){
                 return true;
@@ -116,18 +138,18 @@ const gameBoard = (()=>{
             }
         }
 
-        return {isEnd};
+        return {isEnd, isLastRound};
     })();
 
     const play = (e) =>{
         let isEnd = checkResult.isEnd();
         if(e.target.innerText == "" && player.getTurn() && !isEnd){
-            player.play(e);
-            player.setTurn(false);
-        }
-        if(!player.getTurn() && !isEnd){
+                player.play(e);
+                player.setTurn(false);
+       }
+        if(ai.getTurn() && !isEnd){
             ai.play();
-            player.setTurn(true);
+            ai.setTurn(false);
         }
         display(boards);
     }
@@ -141,6 +163,8 @@ const gameBoard = (()=>{
                 winner = "ai";
             }
             console.log(`Game is over: ${checkResult.isEnd()} and the Winner: ${winner}`);
+        }else if(checkResult.isLastRound()){
+            console.log('game is over and the result is tie');
         }
     };
 
