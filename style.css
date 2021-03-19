@@ -1,6 +1,7 @@
 *{
     margin: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body{
@@ -8,6 +9,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Permanent Marker', cursive;
 }
 
 #container{
@@ -18,6 +20,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
+    transition: transform 0.5s ease-out;
 }
 
 .board{
@@ -25,8 +28,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 0.1rem;
+    font-size: 0.01rem;
     transition: font-size 0.2s ease-out;
 }
 
@@ -59,4 +61,52 @@ body{
     transition-delay: 0.4s;
     color:rgb(211, 208, 208);
     font-size: 4rem;
+}
+
+#end-game-declare{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    background: transparent;
+    transition: all 0.5s ease-out;
+    transition-delay: 0.3s;
+    font-size: 7rem;
+    color:rgb(24, 32, 41);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 20vh;
+}
+
+#end-game-declare button{
+    width:400px;
+    height: 40px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    background-color: rgba(230, 209, 209, 0.171);
+    border: none;
+    border-radius: 10px;
+    color: rgb(32, 43, 56);
+    transition: all 0.1s ease;
+}
+
+#end-game-declare button:hover{
+    cursor:pointer;
+    background-color: rgba(143, 164, 119, 0.44);
+}
+
+#end-game-declare button:focus{
+    outline:0;
+}
+
+.end-game-declare-trigger{
+    left:0 !important;
+}
+
+.end-game-container-move{
+    transform:translateX(1300px);
 }
