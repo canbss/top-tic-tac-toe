@@ -72,7 +72,7 @@ body{
     background: transparent;
     transition: all 0.5s ease-out;
     transition-delay: 0.3s;
-    font-size: 7rem;
+    font-size: 5rem;
     color:rgb(24, 32, 41);
     text-align: center;
     display: flex;
@@ -82,7 +82,7 @@ body{
     padding-top: 20vh;
 }
 
-#end-game-declare button{
+#again-button{
     width:400px;
     height: 40px;
     font-family: 'Permanent Marker', cursive;
@@ -109,4 +109,137 @@ body{
 
 .end-game-container-move{
     transform:translateX(1300px);
+}
+
+#start-game{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(48, 101, 117, 0.884);
+    padding-top: 30vh;
+    transition: all 0.5s ease;
+    color: rgb(22, 31, 43);
+}
+
+#start-game p{
+    font-size: 5rem;
+}
+
+.start-game-remove{
+    top: -100vh !important;
+}
+
+#start-game-buttons{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.start-game-button{
+    flex-grow: 1;
+    height: 45px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    background-color: rgba(230, 209, 209, 0.171);
+    border: none;
+    border-radius: 10px;
+    color: rgb(32, 43, 56);
+    transition: all 0.1s ease;
+    margin-left: 3px;
+}
+
+#easy:hover{
+    cursor: pointer;
+    background-color: rgba(143, 164, 119, 0.568);
+}
+
+#ai:hover{
+    cursor: pointer;
+    background-color: rgba(164, 119, 123, 0.568);
+}
+
+#difficulty-change-section{
+    display: flex;
+    flex-direction: column;
+    border: 4px solid rgb(32, 43, 56);
+    border-radius: 20px;
+    padding:10px;
+    margin-top: 25px;
+}
+
+#end-game-declare-change-difficulty{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#end-game-declare-difficulty-text{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 2rem;
+    color: rgb(32, 43, 56);
+}
+
+#end-game-declare-difficulty-button-easy{
+    margin-right: 5px;
+}
+
+#end-game-declare-difficulty-button-ai:hover{
+    cursor: pointer;
+    background-color: rgba(164, 119, 123, 0.568);
+}
+
+#end-game-declare-difficulty-button-easy:hover{
+    cursor: pointer;
+    background-color: rgba(143, 164, 119, 0.568);
+}
+
+@media(max-width: 530px){
+
+    #start-game p {
+        font-size: 3rem;
+    }
+
+    #start-game-buttons{
+        flex-direction: column;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .start-game-button{
+        margin-top: 5px;
+        margin-left: 0px;
+    }
+
+    #end-game-declare{
+        font-size: 3rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #again-button{
+        width:100%;
+    }
+
+    #end-game-declare-button{
+        font-size: 1.5rem;
+    }
+
+    #end-game-declare-difficulty-button-easy{
+        margin-right: 5px;
+    }
+    
+    #container{
+        height: 50vh;
+        margin-top: 25vh;
+    }
 }
